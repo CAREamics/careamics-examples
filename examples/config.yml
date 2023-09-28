@@ -1,0 +1,21 @@
+algorithm:
+  is_3D: false
+  loss: n2v
+  model: UNet
+data:
+  axes: SYX
+  data_format: tif
+  in_memory: true
+experiment_name: ConfigTest
+training:
+  augmentation: true
+  batch_size: 16
+  lr_scheduler:
+    name: ReduceLROnPlateau
+  num_epochs: 100
+  optimizer:
+    name: Adam
+  patch_size:
+  - 64
+  - 64
+working_directory: .
