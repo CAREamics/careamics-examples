@@ -3,7 +3,10 @@
     <img src="https://raw.githubusercontent.com/CAREamics/.github/main/profile/images/banner_careamics.png">
   </a>
 </p>
-[![CI](https://github.com/CAREamics/careamics-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/CAREamics/careamics-examples/actions/workflows/test_guides.yml)
+
+[![License](https://img.shields.io/pypi/l/careamics.svg?color=green)](https://github.com/CAREamics/careamics/blob/main/LICENSE)
+[![Test Guides](https://github.com/CAREamics/careamics-examples/actions/workflows/test_guides.yaml/badge.svg)](https://github.com/CAREamics/careamics-examples/actions/workflows/test_guides.yaml)
+
 
 # CAREamics Examples
 
