@@ -3,3 +3,5 @@
 .pytest*
 *.DS_Store*
 **/.ipynb_checkpoints
+**/*.yml
+**/*.yaml

@@ -1,0 +1,6 @@
+torch
+torchvision
+careamics-portfolio
+careamics @ git+https://github.com/CAREamics/careamics.git
+pytest
+nbmake

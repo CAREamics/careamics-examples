@@ -1,0 +1,29 @@
+name: Test Guides
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅ Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # needed for git committers
+
+      - name: 🐍 Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Run notebooks
+        run: pytest --nbmake "./guides"
