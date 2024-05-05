@@ -1,0 +1,37 @@
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = [
+    "E",  # style errors
+    "W",  # style warnings
+    "F",  # flakes
+    "D",  # pydocstyle
+    "I",  # isort
+    "UP", # pyupgrade
+    # "S",    # bandit
+    "C4",   # flake8-comprehensions
+    "B",    # flake8-bugbear
+    "A001", # flake8-builtins
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D107", # Missing docstring in __init__
+    "D203", # 1 blank line required before class docstring
+    "D212", # Multi-line docstring summary should start at the first line
+    "D213", # Multi-line docstring summary should start at the second line
+    "D401", # First line should be in imperative mood
+    "D413", # Missing blank line after last section
+    "D416", # Section name should end with a colon
+
+    # incompatibility with mypy
+    "RUF005", # collection-literal-concatenation, in prediction_utils.py:30
+
+    # version specific
+    "UP006", # Replace typing.List by list, mandatory for py3.8
+    "UP007", # Replace Union by |, mandatory for py3.9
+
+    "E402", # Imports not at top
+]
+ignore-init-module-imports = true
+show-fixes = true
