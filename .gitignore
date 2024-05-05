@@ -5,3 +5,6 @@
 **/.ipynb_checkpoints
 **/*.yml
 **/*.yaml
+lightning_logs
+checkpoints
+*.zip*

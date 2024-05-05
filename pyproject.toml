@@ -5,7 +5,6 @@ select = [
     "E",  # style errors
     "W",  # style warnings
     "F",  # flakes
-    "D",  # pydocstyle
     "I",  # isort
     "UP", # pyupgrade
     # "S",    # bandit
@@ -15,6 +14,8 @@ select = [
     "RUF",  # ruff-specific rules
 ]
 ignore = [
+    "D101",
+    "D102",
     "D100", # Missing docstring in public module
     "D107", # Missing docstring in __init__
     "D203", # 1 blank line required before class docstring
