@@ -40,4 +40,8 @@ careamist.train(
 # %%
 from careamics import CAREamicsTrainData
 
-CAREamicsTrainData(data_config=config.data_config, train_source=train_array)
+data_module = CAREamicsTrainData(  # (1)!
+    data_config=config.data_config, train_source=train_array
+)
+
+careamist.train(datamodule=data_module)
