@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # %%
 from careamics import save_configuration
 from careamics.config import create_n2v_configuration

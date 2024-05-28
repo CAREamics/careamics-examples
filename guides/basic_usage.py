@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Example showcasing the basic usage of CAREamics."""
 import numpy as np
 from careamics import CAREamist

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # %%
 # Intro
 from careamics.config import (
