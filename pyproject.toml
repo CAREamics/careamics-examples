@@ -1,7 +1,7 @@
 [tool.ruff]
 line-length = 88
 target-version = "py38"
-select = [
+lint.select = [
     "E",  # style errors
     "W",  # style warnings
     "F",  # flakes
@@ -13,7 +13,7 @@ select = [
     "A001", # flake8-builtins
     "RUF",  # ruff-specific rules
 ]
-ignore = [
+lint.ignore = [
     "D101",
     "D102",
     "D100", # Missing docstring in public module
@@ -34,5 +34,4 @@ ignore = [
 
     "E402", # Imports not at top
 ]
-ignore-init-module-imports = true
 show-fixes = true
