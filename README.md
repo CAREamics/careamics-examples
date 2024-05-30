@@ -12,13 +12,7 @@
 
 This repository host example uses of [CAREamics](https://github.com/CAREamics/careamics).
 
+
 ## Installation
 
-In order to use CAREamics examples, set up a new conda environment by following the
-instructions below:
-
-```bash
-conda create -y -n careamics python=3.9
-conda activate careamics
-pip install "careamics[all]"
-```
+Check out the [documentation](https://careamics.github.io/) for installation instructions and guides!
