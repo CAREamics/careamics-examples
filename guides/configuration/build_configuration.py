@@ -65,8 +65,7 @@ data_model = DataConfig(
             "name": SupportedTransform.NORMALIZE.value,
         },
         {
-            "name": SupportedTransform.NDFLIP.value,
-            "is_3D": False,
+            "name": SupportedTransform.XY_FLIP.value,
         },
         N2VManipulateModel(  # (6)!
             masked_pixel_percentage=0.15,

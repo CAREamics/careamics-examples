@@ -5,6 +5,10 @@
 **/.ipynb_checkpoints
 **/*.yml
 **/*.yaml
-lightning_logs
-checkpoints
+**/lightning_logs
+**/checkpoints
 *.zip*
+*.npy
+**/data
+.mypy_cache
+.ruff_cache

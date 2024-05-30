@@ -17,8 +17,8 @@ careamist = CAREamist(config)
 # %%
 import numpy as np
 
-train_array = np.random.rand(128, 128)
-val_array = np.random.rand(128, 128)
+train_array = np.random.rand(256, 256)
+val_array = np.random.rand(256, 256)
 
 careamist.train(
     train_source=train_array,  # (1)!
@@ -26,12 +26,29 @@ careamist.train(
 )
 
 # %%
+import tifffile
+from careamics.utils import get_careamics_home
+
+path_to_train_data = get_careamics_home() / "test" / "train_data.tiff"
+path_to_train_data.parent.mkdir(exist_ok=True, parents=True)
+tifffile.imwrite(path_to_train_data, train_array)
+assert path_to_train_data.exists()
+
+path_to_val_data = get_careamics_home() / "test" / "val_data.tiff"
+path_to_val_data.parent.mkdir(exist_ok=True, parents=True)
+tifffile.imwrite(path_to_val_data, train_array)
+assert path_to_val_data.exists()
+
+config.data_config.data_type = "tiff"
+
 careamist.train(
-    train_source="path/to/my/data.tiff",  # (1)!
-    val_source="path/to/my/val_data.tiff",
+    train_source=path_to_train_data,  # (1)!
+    val_source=path_to_val_data,
 )
 
 # %%
+config.data_config.data_type = "array"
+
 careamist.train(
     train_source=train_array,
     val_percentage=0.1,  # (1)!
@@ -42,7 +59,7 @@ careamist.train(
 from careamics import CAREamicsTrainData
 
 data_module = CAREamicsTrainData(  # (1)!
-    data_config=config.data_config, train_source=train_array
+    data_config=config.data_config, train_data=train_array
 )
 
 careamist.train(datamodule=data_module)
