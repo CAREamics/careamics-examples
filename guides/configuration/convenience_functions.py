@@ -8,7 +8,7 @@ from careamics.config import (
 )
 
 # %%
-# Example Noise2Void with channels
+# Noise2Void with channels
 config = create_n2v_configuration(
     experiment_name="n2v_2D_channels",
     data_type="tiff",
@@ -19,9 +19,9 @@ config = create_n2v_configuration(
     n_channels=3,  # (2)!
 )
 # %%
-# Non independent channels
+# Noise2Void channels together
 config = create_n2v_configuration(
-    experiment_name="n2v_2D_channels",
+    experiment_name="n2v_2D_mix_channels",
     data_type="tiff",
     axes="YXC",  # (1)!
     patch_size=[64, 64],
@@ -31,7 +31,82 @@ config = create_n2v_configuration(
     independent_channels=False,  # (2)!
 )
 # %%
-# Example Noise2Noise with channels
+# N2V without augmentations
+config = create_n2v_configuration(
+    experiment_name="n2v_2D_no_aug",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    use_augmentations=False,  # (1)!
+)
+# %%
+# N2V with WandB
+config = create_n2v_configuration(
+    experiment_name="n2v_2D_wandb",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    logger="wandb",  # (1)!
+)
+# %%
+# N2V model specific parameters
+config = create_n2v_configuration(
+    experiment_name="n2v_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    model_kwargs={
+        "depth": 3,  # (1)!
+        "num_channels_init": 64,  # (2)!
+        # (3)!
+    },
+)
+# %%
+# N2V parameters
+config = create_n2v_configuration(
+    experiment_name="n2v_2D",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    roi_size=7,
+    masked_pixel_percentage=0.5,
+)
+
+# %%
+# N2V2
+config = create_n2v_configuration(
+    experiment_name="n2v2_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    use_n2v2=True,  # (1)!
+)
+
+# %%
+# structN2V
+config = create_n2v_configuration(
+    experiment_name="structn2v_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    struct_n2v_axis="horizontal",
+    struct_n2v_span=5,
+)
+
+# %%
+# N2N multiple channels
 config = create_n2n_configuration(
     experiment_name="n2n_2D_channels",
     data_type="tiff",
@@ -41,22 +116,24 @@ config = create_n2n_configuration(
     num_epochs=20,
     n_channels=3,  # (2)!
 )
+
 # %%
-# Example CARE with channels
-config = create_care_configuration(
-    experiment_name="care_2D_channels",
+# N2N channels together
+config = create_n2n_configuration(
+    experiment_name="n2n_2D_mix_channels",
     data_type="tiff",
     axes="YXC",  # (1)!
     patch_size=[64, 64],
     batch_size=8,
     num_epochs=20,
-    n_channels_in=3,  # (2)!
-    n_channels_out=2,  # (3)!
+    n_channels=3,
+    independent_channels=False,  # (2)!
 )
+
 # %%
-# Example with augmentations
-config = create_care_configuration(
-    experiment_name="care_2D",
+# N2N without augmentations
+config = create_n2n_configuration(
+    experiment_name="n2n_2D_no_aug",
     data_type="tiff",
     axes="YX",
     patch_size=[64, 64],
@@ -64,10 +141,11 @@ config = create_care_configuration(
     num_epochs=20,
     use_augmentations=False,  # (1)!
 )
+
 # %%
-# Example with logger
+# N2N with WandB"
 config = create_n2n_configuration(
-    experiment_name="n2n_2D",
+    experiment_name="n2n_2D_wandb",
     data_type="tiff",
     axes="YX",
     patch_size=[64, 64],
@@ -77,9 +155,9 @@ config = create_n2n_configuration(
 )
 
 # %%
-# Example with model kwargs
-config = create_care_configuration(
-    experiment_name="care_3D",
+# N2N with model specific parameters
+config = create_n2n_configuration(
+    experiment_name="n2n_3D",
     data_type="tiff",
     axes="ZYX",
     patch_size=[16, 64, 64],
@@ -93,7 +171,82 @@ config = create_care_configuration(
 )
 
 # %%
-# Example with loss
+# N2N with different loss
+config = create_n2n_configuration(
+    experiment_name="n2n_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    loss="mae",  # (1)!
+)
+# %%
+# CARE with multiple channels
+config = create_care_configuration(
+    experiment_name="care_2D_channels",
+    data_type="tiff",
+    axes="YXC",  # (1)!
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    n_channels_in=3,  # (2)!
+    n_channels_out=2,  # (3)!
+)
+
+# %%
+# CARE channels together
+config = create_care_configuration(
+    experiment_name="care_2D_mix_channels",
+    data_type="tiff",
+    axes="YXC",  # (1)!
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    n_channels_in=3,
+    n_channels_out=2,
+    independent_channels=False,  # (2)!
+)
+# %%
+# CARE without augmentations
+config = create_care_configuration(
+    experiment_name="care_2D_no_aug",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    use_augmentations=False,  # (1)!
+)
+
+# %%
+# CARE with WandB
+config = create_care_configuration(
+    experiment_name="care_2D_wandb",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    logger="wandb",  # (1)!
+)
+# %%
+# CARE with model specific parameters
+config = create_care_configuration(
+    experiment_name="care_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    model_kwargs={
+        "depth": 3,  # (1)!
+        "num_channels_init": 64,  # (2)!
+        # (3)!
+    },
+)
+# %%
+# CARE with different loss
 config = create_care_configuration(
     experiment_name="care_3D",
     data_type="tiff",
@@ -102,42 +255,4 @@ config = create_care_configuration(
     batch_size=8,
     num_epochs=20,
     loss="mae",  # (1)!
-)
-
-# %%
-# Example with N2V parameters
-config = create_n2v_configuration(
-    experiment_name="n2v_2D",
-    data_type="tiff",
-    axes="YX",
-    patch_size=[64, 64],
-    batch_size=8,
-    num_epochs=20,
-    roi_size=7,
-    masked_pixel_percentage=0.5,
-)
-
-# %%
-# Example with N2V2
-config = create_n2v_configuration(
-    experiment_name="n2v2_3D",
-    data_type="tiff",
-    axes="ZYX",
-    patch_size=[16, 64, 64],
-    batch_size=8,
-    num_epochs=20,
-    use_n2v2=True,  # (1)!
-)
-
-# %%
-# Example with structN2V
-config = create_n2v_configuration(
-    experiment_name="structn2v_3D",
-    data_type="tiff",
-    axes="ZYX",
-    patch_size=[16, 64, 64],
-    batch_size=8,
-    num_epochs=20,
-    struct_n2v_axis="horizontal",
-    struct_n2v_span=5,
 )
