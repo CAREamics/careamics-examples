@@ -59,7 +59,7 @@ algorithm_model = AlgorithmConfig(
 
 # Data
 norm = NormalizeModel()
-ndflip = XYFlipModel()
+xyflip = XYFlipModel()
 rotate = XYRandomRotate90Model()
 n2vmanipulate = N2VManipulateModel(
     roi_size=11,
@@ -74,7 +74,7 @@ data_model = DataConfig(
     patch_size=(256, 256),
     batch_size=8,
     axes="YX",
-    transforms=[norm, ndflip, rotate, n2vmanipulate],
+    transforms=[norm, xyflip, rotate, n2vmanipulate],
     mean=0.485,  # (1)!
     std=0.229,
     dataloader_params={
