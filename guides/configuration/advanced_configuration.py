@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # %%
+# --8<-- [start:data]
 from careamics.config import DataConfig
 
 data_config = DataConfig(
@@ -9,9 +10,10 @@ data_config = DataConfig(
     batch_size=8,
     num_epochs=20,
 )
-
+# --8<-- [end:data]
 
 # %%
+# --8<-- [start:model]
 from careamics.config import AlgorithmConfig, register_model
 from torch import nn, ones
 
@@ -39,3 +41,4 @@ config = AlgorithmConfig(
         "out_features": 5,
     },
 )
+# --8<-- [end:model]

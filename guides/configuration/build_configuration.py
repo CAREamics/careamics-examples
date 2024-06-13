@@ -25,6 +25,7 @@ config = Configuration(**config_as_dict)  # (5)!
 # --8<-- [end:as_dict]
 
 # %%
+# --8<-- [start:pydantic]
 from careamics import Configuration
 from careamics.config import (  # (1)!
     AlgorithmConfig,
@@ -66,7 +67,8 @@ data_model = DataConfig(
             "name": SupportedTransform.NORMALIZE.value,
         },
         {
-            "name": SupportedTransform.XY_FLIP.value,
+            "name": SupportedTransform.NDFLIP.value,
+            "is_3D": False,
         },
         N2VManipulateModel(  # (6)!
             masked_pixel_percentage=0.15,
@@ -84,9 +86,10 @@ training_model = TrainingConfig(
 )
 
 # finally, build the Configuration
-config = Configuration(
+config = Configuration(  # (8)!
     experiment_name=experiment_name,
     algorithm_config=algorithm_model,
     data_config=data_model,
     training_config=training_model,
 )
+# --8<-- [end:pydantic]
