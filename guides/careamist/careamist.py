@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # %%
+# --8<-- [start:config]
 from careamics import CAREamist
 from careamics.config import create_n2v_configuration
 
@@ -13,9 +14,10 @@ config = create_n2v_configuration(
 )  # (1)!
 
 careamist = CAREamist(config)
-
+# --8<-- [end:config]
 
 # %%
+# --8<-- [start:config_path]
 from careamics import CAREamist
 from careamics.config import create_n2v_configuration, save_configuration
 
@@ -31,6 +33,7 @@ config = create_n2v_configuration(
 save_configuration(config, "configuration_example.yml")
 
 careamist = CAREamist("configuration_example.yml")
+# --8<-- [end:config_path]
 
 # %%
 # necessary to export to the BMZ (pretending it trained)
@@ -42,15 +45,20 @@ careamist.export_to_bmz(
 )
 
 # %%
+# --8<-- [start:load_model]
 from careamics import CAREamist
 
 path_to_model = "model.zip"  # (1)!
 
 careamist = CAREamist(path_to_model)
+# --8<-- [end:load_model]
 
 # %%
+# --8<-- [start:exp_name]
 careamist = CAREamist(path_to_model, experiment_name="a_new_experiment")
-
+# --8<-- [end:exp_name]
 
 # %%
+# --8<-- [start:work_dir]
 careamist = CAREamist(config, work_dir="work_dir")
+# --8<-- [end:work_dir]

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # %%
+# --8<-- [start:train_data]
 import numpy as np
 from careamics import CAREamicsTrainData
 from careamics.config import create_n2v_configuration
@@ -18,8 +19,10 @@ config = create_n2v_configuration(
 data_module = CAREamicsTrainData(  # (1)!
     data_config=config.data_config, train_data=train_array
 )
+# --8<-- [end:train_data]
 
 # %%
+# --8<-- [start:custom]
 from pathlib import Path
 from typing import Any
 
@@ -62,3 +65,4 @@ data_module.setup()  # (9)!
 # check dataset output
 dataloader = data_module.train_dataloader()
 print(dataloader.dataset[0][0].shape)  # (10)!
+# --8<-- [end:custom]
