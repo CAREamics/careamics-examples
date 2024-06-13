@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # %%
+# --8<-- [start:specs]
 from careamics import Configuration
 from careamics.config import (
     AlgorithmConfig,
@@ -96,3 +97,4 @@ config = Configuration(
     data_config=data_model,
     training_config=training_model,
 )
+# --8<-- [end:specs]

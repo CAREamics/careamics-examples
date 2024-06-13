@@ -7,7 +7,7 @@ from careamics.config import (
     create_n2v_configuration,  # Noise2Void, N2V2, structN2V
 )
 
-# --8<-- [start:imports]
+# --8<-- [end:imports]
 
 # %%
 # Noise2Void with channels
