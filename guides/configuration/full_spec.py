@@ -58,7 +58,7 @@ algorithm_model = AlgorithmConfig(
 )
 
 # Data
-ndflip = XYFlipModel()
+xyflip = XYFlipModel()
 rotate = XYRandomRotate90Model()
 n2vmanipulate = N2VManipulateModel(
     roi_size=11,
@@ -73,7 +73,7 @@ data_model = DataConfig(
     patch_size=(256, 256),
     batch_size=8,
     axes="YX",
-    transforms=[ndflip, rotate, n2vmanipulate],  # (1)!
+    transforms=[xyflip, rotate, n2vmanipulate],  # (1)!
     dataloader_params={
         "num_workers": 4,
         # (2)!
