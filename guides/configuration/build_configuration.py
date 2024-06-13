@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-
+# %%
+# --8<-- [start:as_dict]
 from careamics import Configuration
 
-# %%
 config_as_dict = {
     "experiment_name": "my_experiment",  # (1)!
     "algorithm_config": {  # (2)!
@@ -22,6 +22,7 @@ config_as_dict = {
     },
 }
 config = Configuration(**config_as_dict)  # (5)!
+# --8<-- [end:as_dict]
 
 # %%
 from careamics import Configuration
