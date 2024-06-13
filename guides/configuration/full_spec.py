@@ -31,7 +31,7 @@ from careamics.config.transformations import (
 experiment_name = "Full example"
 
 # Algorithm
-model = UNetModel(
+model = UNetModel(  # (1)!
     architecture=SupportedArchitecture.UNET.value,
     in_channels=1,
     num_classes=1,
@@ -73,7 +73,7 @@ data_model = DataConfig(
     patch_size=(256, 256),
     batch_size=8,
     axes="YX",
-    transforms=[xyflip, rotate, n2vmanipulate],  # (1)!
+    transforms=[xyflip, rotate, n2vmanipulate],
     dataloader_params={
         "num_workers": 4,
         # (2)!
