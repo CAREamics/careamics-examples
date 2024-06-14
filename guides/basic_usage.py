@@ -23,11 +23,14 @@ train_data = np.random.randint(0, 255, (256, 256))  # (4)!
 careamist.train(train_source=train_data)
 
 # once trained, predict
-pred_data = np.random.randint(0, 255, (128, 128))
+pred_data = np.random.randint(0, 255, (128, 128)).astype(np.float32)
 predction = careamist.predict(source=pred_data)
 
 # export to BMZ format
 careamist.export_to_bmz(  # (5)!
-    path="my_model.bmz", name="N2V 2D", authors=[{"name": "CAREamics authors"}]
+    path="my_model.bmz",
+    name="N2V 2D",
+    input_array=pred_data,
+    authors=[{"name": "CAREamics authors"}],
 )
 # --8<-- [end:basic_usage]
