@@ -37,7 +37,7 @@ careamist = CAREamist("configuration_example.yml")
 
 # %%
 # necessary to export to the BMZ (pretending it trained)
-careamist.cfg.data_config.set_mean_and_std(0.0, 1.0)
+careamist.cfg.data_config.set_mean_and_std([0.0], [1.0])
 
 # %%
 import numpy as np
