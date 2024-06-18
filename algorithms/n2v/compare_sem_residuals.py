@@ -1,3 +1,8 @@
+"""
+This script was used to generate an image used in the N2V algorithm description,
+it uses two trained networks (not included in the repository), one trained normally
+and one for a single epoch, on the SEM dataset.
+"""
 from pathlib import Path
 
 import matplotlib.pyplot as plt
