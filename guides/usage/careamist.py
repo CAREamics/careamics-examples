@@ -75,7 +75,7 @@ from pytorch_lightning.callbacks import Callback
 
 
 # define a custom callback
-class MyPrintingCallback(Callback):  # (1)!
+class MyCallback(Callback):  # (1)!
     def __init__(self):
         super().__init__()
 
@@ -89,7 +89,7 @@ class MyPrintingCallback(Callback):  # (1)!
         self.has_ended = True
 
 
-my_callback = MyPrintingCallback()  # (3)!
+my_callback = MyCallback()  # (3)!
 
 careamist = CAREamist(config, callbacks=[my_callback])  # (4)!
 # --8<-- [end:callbacks]
