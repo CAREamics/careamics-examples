@@ -67,3 +67,29 @@ careamist = CAREamist(path_to_model, experiment_name="a_new_experiment")
 # --8<-- [start:work_dir]
 careamist = CAREamist(config, work_dir="work_dir")
 # --8<-- [end:work_dir]
+
+# %%
+# Callbacks
+# --8<-- [start:callbacks]
+from pytorch_lightning.callbacks import Callback
+
+
+# define a custom callback
+class MyCallback(Callback):  # (1)!
+    def __init__(self):
+        super().__init__()
+
+        self.has_started = False
+        self.has_ended = False
+
+    def on_train_start(self, trainer, pl_module):
+        self.has_started = True  # (2)!
+
+    def on_train_end(self, trainer, pl_module):
+        self.has_ended = True
+
+
+my_callback = MyCallback()  # (3)!
+
+careamist = CAREamist(config, callbacks=[my_callback])  # (4)!
+# --8<-- [end:callbacks]
