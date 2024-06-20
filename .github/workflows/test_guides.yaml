@@ -3,13 +3,15 @@ name: Test Guides
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
+  schedule:
+    # run every week
+    - cron: "0 0 * * 0"
 
-# Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  issues: write
 
 jobs:
   build:
@@ -18,7 +20,7 @@ jobs:
       - name: ✅ Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # needed for git committers
+          fetch-depth: 0
 
       - name: 🐍 Install Python
         uses: actions/setup-python@v4
@@ -30,3 +32,16 @@ jobs:
 
       - name: 📝 Run tests
         run: pytest
+
+      # If something goes wrong, we can open an issue in the repo
+      - name: 📝 Report --pre Failures
+        if: failure() && github.event_name == 'schedule'
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+          TITLE: "[test-bot] Guide examples are failing"
+        with:
+          filename: .github/TEST_FAIL_TEMPLATE.md
+          update_existing: true
+
