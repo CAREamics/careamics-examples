@@ -10,7 +10,7 @@
 
 # CAREamics Examples
 
-This repository host example uses of [CAREamics](https://github.com/CAREamics/careamics).
+This repository host example uses of [CAREamics](https://github.com/CAREamics/careamics) used in the documentation.
 
 
 ## Installation
