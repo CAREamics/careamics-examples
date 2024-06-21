@@ -21,12 +21,26 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
+      
+      - name: Extract branch name
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+      
       - name: 🐍 Install Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
 
+      - name: 📝 Write CAREamics branch to requirements.txt
+        uses: DamianReeves/write-file-action@v1.3
+        with:
+          path: requirements.txt
+          contents: |
+            careamics @ git+https://github.com/CAREamics/careamics.git@${{ steps.extract_branch.outputs.branch }}
+          write-mode: append
+        
       - name: 📦 Install dependencies
         run: pip install -r requirements.txt
 
