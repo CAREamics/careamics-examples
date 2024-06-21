@@ -2,8 +2,8 @@
 # %%
 # --8<-- [start:train_data]
 import numpy as np
-from careamics import CAREamicsTrainData
 from careamics.config import create_n2v_configuration
+from careamics.lightning import CAREamicsTrainData
 
 train_array = np.random.rand(128, 128)
 
@@ -27,8 +27,8 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
-from careamics import CAREamicsTrainData
 from careamics.config import create_n2v_configuration
+from careamics.lightning import CAREamicsTrainData
 
 
 def read_npy(  # (1)!

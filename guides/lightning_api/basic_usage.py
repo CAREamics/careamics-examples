@@ -59,6 +59,7 @@ trainer.fit(model, datamodule=data)
 means, stds = data.get_data_statistics()
 predict_data = PredictDataWrapper(
     pred_data=val_array,
+    data_type="array",
     image_means=means,
     image_stds=stds,
     tile_size=(8, 8),
