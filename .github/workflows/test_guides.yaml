@@ -39,6 +39,7 @@ jobs:
             echo "Branch $BRANCH_NAME does not exist. Defaulting to main."
             main_branch="main"
             echo "branch=$main_branch" >> $GITHUB_OUTPUT
+            echo "Branch is [${{ steps.extract_branch.outputs.branch }}]"
           fi
 
       - name: 🐍 Install Python
@@ -51,7 +52,6 @@ jobs:
         with:
           path: requirements.txt
           contents: |
-            echo "Branch is [${{ steps.extract_branch.outputs.branch }}]"
             careamics @ git+https://github.com/CAREamics/careamics.git@${{ steps.extract_branch.outputs.branch }}
           write-mode: append
         
