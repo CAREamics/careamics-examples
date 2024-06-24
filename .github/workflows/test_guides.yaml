@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
   workflow_dispatch:
   schedule:
     # run every week
@@ -23,10 +24,23 @@ jobs:
           fetch-depth: 0
       
       - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
+        shell: bash
+        run: |
+          echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+          echo "Branch is $branch"
       
+      - name: Branch in CAREamics
+        id: check_branch
+        run: |
+          if git ls-remote --heads "https://github.com/CAREamics/careamics.git" "$branch" | grep -q "$branch"; then
+            echo "Branch $branch exists in CAREamics."
+          else
+            echo "Branch $BRANCH_NAME does not exist. Defaulting to main."
+            branch="main"
+            echo "Branch is $branch"
+          fi
+
       - name: 🐍 Install Python
         uses: actions/setup-python@v4
         with:
