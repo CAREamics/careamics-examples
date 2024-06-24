@@ -12,14 +12,14 @@ config = create_n2v_configuration(
     axes="YX",
     patch_size=[64, 64],
     batch_size=1,
-    num_epochs=1,
+    num_epochs=1,  # (1)!
 )
 
 # instantiate a careamist
 careamist = CAREamist(config)
 
 # train the model
-train_data = np.random.randint(0, 255, (256, 256))
+train_data = np.random.randint(0, 255, (256, 256))  # (2)!
 careamist.train(train_source=train_data)
 
 # once trained, predict

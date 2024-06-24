@@ -66,3 +66,51 @@ data_module.setup()  # (9)!
 dataloader = data_module.train_dataloader()
 print(dataloader.dataset[0][0].shape)  # (10)!
 # --8<-- [end:custom]
+
+# %%
+# --8<-- [start:train_custom]
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+from careamics import CAREamist
+from careamics.config import create_n2v_configuration
+from careamics.lightning import CAREamicsTrainData
+
+
+def read_npy(
+    path: Path,
+    *args: Any,
+    **kwargs: Any,
+) -> np.ndarray:
+    return np.load(path)
+
+
+# example data
+train_array = np.random.rand(128, 128)
+np.save("train_array.npy", train_array)
+
+# configuration
+config = create_n2v_configuration(
+    experiment_name="n2v_2D",
+    data_type="custom",
+    axes="YX",
+    patch_size=[32, 32],
+    batch_size=1,
+    num_epochs=1,
+)
+
+# Data module for custom types
+data_module = CAREamicsTrainData(
+    data_config=config.data_config,
+    train_data="train_array.npy",
+    read_source_func=read_npy,
+    extension_filter="*.npy",
+)
+
+# CAREamist
+careamist = CAREamist(source=config)
+
+# Train
+careamist.train(datamodule=data_module)
+# --8<-- [end:train_custom]
