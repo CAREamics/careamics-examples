@@ -28,18 +28,21 @@ jobs:
         shell: bash
         run: |
           echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-          echo "Branch is [$branch]"
-      
-      - name: Branch in CAREamics
+
+      - name: Print branch name
+        id: print_branch
+        shell: bash
+        run: echo "Branch is [${{ steps.extract_branch.outputs.branch }}]"
+
+      - name: Examine branch in CAREamics
         id: check_branch
         run: |
-          if git ls-remote --heads "https://github.com/CAREamics/careamics.git" "$branch" | grep -q "$branch"; then
-            echo "Branch [${{ steps.extract_branch.outputs.branch }}] exists in CAREamics."
+         if git ls-remote --heads "https://github.com/CAREamics/careamics.git" ${{ steps.extract_branch.outputs.branch }} | grep -q ${{ steps.extract_branch.outputs.branch }}; then
+            echo "Branch ${{ steps.extract_branch.outputs.branch }} exists in CAREamics."
           else
-            echo "Branch $BRANCH_NAME does not exist. Defaulting to main."
+            echo "Branch ${{ steps.extract_branch.outputs.branch }} does not exist. Defaulting to main."
             main_branch="main"
             echo "branch=$main_branch" >> $GITHUB_OUTPUT
-            echo "Branch is [${{ steps.extract_branch.outputs.branch }}]"
           fi
 
       - name: 🐍 Install Python
