@@ -3,7 +3,7 @@
 # --8<-- [start:train_data]
 import numpy as np
 from careamics.config import create_n2v_configuration
-from careamics.lightning import CAREamicsTrainData
+from careamics.lightning import TrainDataModule
 
 train_array = np.random.rand(128, 128)
 
@@ -16,7 +16,7 @@ config = create_n2v_configuration(
     num_epochs=1,
 )
 
-data_module = CAREamicsTrainData(  # (1)!
+data_module = TrainDataModule(  # (1)!
     data_config=config.data_config, train_data=train_array
 )
 # --8<-- [end:train_data]
@@ -28,7 +28,7 @@ from typing import Any
 
 import numpy as np
 from careamics.config import create_n2v_configuration
-from careamics.lightning import CAREamicsTrainData
+from careamics.lightning import TrainDataModule
 
 
 def read_npy(  # (1)!
@@ -53,7 +53,7 @@ config = create_n2v_configuration(
     num_epochs=1,
 )
 
-data_module = CAREamicsTrainData(
+data_module = TrainDataModule(
     data_config=config.data_config,
     train_data="train_array.npy",  # (6)!
     read_source_func=read_npy,  # (7)!
@@ -75,7 +75,7 @@ from typing import Any
 import numpy as np
 from careamics import CAREamist
 from careamics.config import create_n2v_configuration
-from careamics.lightning import CAREamicsTrainData
+from careamics.lightning import TrainDataModule
 
 
 def read_npy(
@@ -101,7 +101,7 @@ config = create_n2v_configuration(
 )
 
 # Data module for custom types
-data_module = CAREamicsTrainData(
+data_module = TrainDataModule(
     data_config=config.data_config,
     train_data="train_array.npy",
     read_source_func=read_npy,

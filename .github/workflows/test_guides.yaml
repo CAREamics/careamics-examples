@@ -8,7 +8,9 @@ on:
   workflow_dispatch:
   schedule:
     # run every week
-    - cron: "0 0 * * 0"
+    # - cron: "0 0 * * 0"
+    # run every day
+    - cron: "0 1 * * *"
 
 permissions:
   contents: read
@@ -65,7 +67,7 @@ jobs:
         run: pytest
 
       # If something goes wrong, we can open an issue in the repo
-      - name: 📝 Report --pre Failures
+      - name: 📝 Report Failures
         if: failure() && github.event_name == 'schedule'
         uses: JasonEtco/create-an-issue@v2
         env:

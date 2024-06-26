@@ -8,9 +8,9 @@ mypath = get_careamics_home()
 
 import numpy as np
 from careamics.lightning import (
-    CAREamicsModuleWrapper,
-    PredictDataWrapper,
-    TrainingDataWrapper,
+    create_careamics_module,
+    create_predict_datamodule,
+    create_train_datamodule,
 )
 from careamics.prediction_utils import convert_outputs
 from pytorch_lightning import Trainer
@@ -24,14 +24,14 @@ train_array = rng.integers(0, 255, (32, 32)).astype(np.float32)
 val_array = rng.integers(0, 255, (32, 32)).astype(np.float32)
 
 # create lightning module
-model = CAREamicsModuleWrapper(
+model = create_careamics_module(
     algorithm="n2v",
     loss="n2v",
     architecture="UNet",
 )
 
 # create data module
-data = TrainingDataWrapper(
+data = create_train_datamodule(
     train_data=train_array,
     val_data=val_array,
     data_type="array",
@@ -57,9 +57,10 @@ trainer.fit(model, datamodule=data)
 
 # predict
 means, stds = data.get_data_statistics()
-predict_data = PredictDataWrapper(
+predict_data = create_predict_datamodule(
     pred_data=val_array,
     data_type="array",
+    axes="YX",
     image_means=means,
     image_stds=stds,
     tile_size=(8, 8),
