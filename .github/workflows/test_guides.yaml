@@ -43,8 +43,8 @@ jobs:
             echo "Branch ${{ steps.extract_branch.outputs.branch }} exists in CAREamics."
           else
             echo "Branch ${{ steps.extract_branch.outputs.branch }} does not exist. Defaulting to main."
-            main_branch="main"
-            echo "branch=$main_branch" >> $GITHUB_OUTPUT
+            MODIFIED_BRANCH_NAME="main"
+            echo "branch=$MODIFIED_BRANCH_NAME" >> $GITHUB_OUTPUT
           fi
 
       - name: 🐍 Install Python
