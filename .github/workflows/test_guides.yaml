@@ -24,40 +24,36 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
-      - name: Extract branch name
-        id: extract_branch
-        shell: bash
-        run: |
-          echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-
-      - name: Print branch name
-        id: print_branch
-        shell: bash
-        run: echo "Branch is [${{ steps.extract_branch.outputs.branch }}]"
-
-      - name: Examine branch in CAREamics
-        id: check_branch
-        run: |
-         if git ls-remote --heads "https://github.com/CAREamics/careamics.git" ${{ steps.extract_branch.outputs.branch }} | grep -q ${{ steps.extract_branch.outputs.branch }}; then
-            echo "Branch ${{ steps.extract_branch.outputs.branch }} exists in CAREamics."
-          else
-            echo "Branch ${{ steps.extract_branch.outputs.branch }} does not exist. Defaulting to main."
-            MODIFIED_BRANCH_NAME="main"
-            echo "branch=$MODIFIED_BRANCH_NAME" >> $GITHUB_OUTPUT
-          fi
 
       - name: 🐍 Install Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
+      
+      - name: Extract example branch name
+        id: extract_branch
+        shell: bash
+        run: |
+          echo "BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+
+      - name: Extract reference branch
+        id: check_branch
+        run: |
+         if git ls-remote --heads "https://github.com/CAREamics/careamics.git" ${{ steps.extract_branch.outputs.BRANCH }} | grep -q ${{ steps.extract_branch.outputs.BRANCH }}; then
+            echo "Branch ${{ steps.extract_branch.outputs.BRANCH }} exists in CAREamics."
+            CAREAMICS_BRANCH=${{ steps.extract_branch.outputs.BRANCH }}
+          else
+            echo "Branch ${{ steps.extract_branch.outputs.BRANCH }} does not exist. Defaulting to main."
+            CAREAMICS_BRANCH="main"
+          fi
+          echo "BRANCH=$CAREAMICS_BRANCH" >> $GITHUB_OUTPUT
 
       - name: 📝 Write CAREamics branch to requirements.txt
         uses: DamianReeves/write-file-action@v1.3
         with:
           path: requirements.txt
           contents: |
-            careamics @ git+https://github.com/CAREamics/careamics.git@${{ steps.extract_branch.outputs.branch }}
+            careamics @ git+https://github.com/CAREamics/careamics.git@${{ steps.check_branch.outputs.CAREAMICS_BRANCH }}
           write-mode: append
         
       - name: 📦 Install dependencies
