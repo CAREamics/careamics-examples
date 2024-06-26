@@ -65,6 +65,6 @@ careamist.export_to_bmz(
     ],
     general_description="This model was trained to denoise 2D images of mitochondria.",
     channel_names=["mito", "nucleus"],  # (1)!
-    data_description="The data was acquired on a confocal microscope [...]",  # (1)!
+    data_description="The data was acquired on a confocal microscope [...]",  # (2)!
 )
 # --8<-- [end:optional]
