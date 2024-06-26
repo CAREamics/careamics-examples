@@ -53,7 +53,7 @@ jobs:
         with:
           path: requirements.txt
           contents: |
-            careamics @ git+https://github.com/CAREamics/careamics.git@${{ steps.check_branch.outputs.CAREAMICS_BRANCH }}
+            careamics @ git+https://github.com/CAREamics/careamics.git@${{ steps.check_branch.outputs.BRANCH }}
           write-mode: append
         
       - name: 📦 Install dependencies
