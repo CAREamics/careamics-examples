@@ -73,16 +73,16 @@ data_model = DataConfig(
     patch_size=(256, 256),
     batch_size=8,
     axes="YX",
-    transforms=[xyflip, rotate, n2vmanipulate],
+    transforms=[xyflip, rotate, n2vmanipulate],  # (2)!
     dataloader_params={
         "num_workers": 4,
-        # (2)!
+        # (3)!
     },
 )
 
 # Traning
 earlystopping = EarlyStoppingModel(
-    # (3)!
+    # (4)!
 )
 
 training_model = TrainingConfig(
