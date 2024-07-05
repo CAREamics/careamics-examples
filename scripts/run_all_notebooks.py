@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """This script runs all example notebooks."""
 
+from datetime import datetime
 from pathlib import Path
 
 import nbformat
@@ -17,15 +18,18 @@ for folder in notebook_folders:
 # run each notebook
 for nb in notebooks:
     with open(nb) as ff:
-        print(f"Will run {nb}")
+        print(f"{datetime.now()} Will run {nb}")
         nb_in = nbformat.read(ff, nbformat.NO_CONVERT)
 
         # run notebook
         ep = ExecutePreprocessor(timeout=600, kernel_name="careamics")
-        print(f"Running {nb}")
+        print(f"{datetime.now()} Running {nb}")
         nb_out = ep.preprocess(nb_in)
 
+        print(f"{datetime.now()} Done running {nb}")
+
     # save notebook
+    print(f"{datetime.now()} Writing {nb}")
     with open(nb, "w") as ff:
         nbformat.write(nb_out, ff)
 
