@@ -22,12 +22,12 @@ algorithm_config:
     parameters: {}
 data_config:
   data_type: tiff
+  axes: ZYX
   patch_size:
   - 8
   - 64
   - 64
   batch_size: 8
-  axes: ZYX
   transforms:
   - name: XYFlip
     flip_x: true
@@ -47,7 +47,7 @@ training_config:
     monitor: val_loss
     verbose: false
     save_weights_only: false
-    mode: min
-    auto_insert_metric_name: false
     save_last: true
     save_top_k: 3
+    mode: min
+    auto_insert_metric_name: false
