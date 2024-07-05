@@ -7,7 +7,7 @@ mypath = get_careamics_home()
 # --8<-- [start:basic_usage]
 
 import numpy as np
-from careamics.lightning import (
+from careamics.lightning import (  # (1)!
     create_careamics_module,
     create_predict_datamodule,
     create_train_datamodule,
@@ -24,7 +24,7 @@ train_array = rng.integers(0, 255, (32, 32)).astype(np.float32)
 val_array = rng.integers(0, 255, (32, 32)).astype(np.float32)
 
 # create lightning module
-model = create_careamics_module(
+model = create_careamics_module(  # (2)!
     algorithm="n2v",
     loss="n2v",
     architecture="UNet",
@@ -41,11 +41,11 @@ data = create_train_datamodule(
 )
 
 # create trainer
-trainer = Trainer(
+trainer = Trainer(  # (3)!
     max_epochs=1,
     default_root_dir=mypath,
     callbacks=[
-        ModelCheckpoint(
+        ModelCheckpoint(  # (4)!
             dirpath=mypath / "checkpoints",
             filename="basic_usage_lightning_api",
         )
@@ -63,11 +63,11 @@ predict_data = create_predict_datamodule(
     axes="YX",
     image_means=means,
     image_stds=stds,
-    tile_size=(8, 8),
+    tile_size=(8, 8),  # (5)!
     tile_overlap=(2, 2),
 )
 
 # predict
 predicted = trainer.predict(model, datamodule=predict_data)
-predicted_stitched = convert_outputs(predicted, tiled=True)
+predicted_stitched = convert_outputs(predicted, tiled=True)  # (6)!
 # --8<-- [end:basic_usage]
