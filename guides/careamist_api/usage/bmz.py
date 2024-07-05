@@ -43,9 +43,7 @@ careamist.export_to_bmz(
         },
         {"name": "Myrna Minkoff", "orcid": "0000-0002-3291-8524"},  # (4)!
     ],
-    general_description=(
-        "This model was trained to denoise 2D images of mitochondria.",  # (5)!
-    ),
+    general_description="This model was trained to denoise 2D images of mitochondria.",  # (5)!
 )
 # --8<-- [end:export]
 
