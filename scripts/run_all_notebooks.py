@@ -13,24 +13,34 @@ notebook_folders = ["applications", "algorithms"]
 # discover all notebooks
 notebooks = []
 for folder in notebook_folders:
-    notebooks.append(list(Path(folder).rglob("*.ipynb")))
+    notebooks.extend(list(Path(folder).rglob("*.ipynb")))
 
 # run each notebook
+last_failed = False
 for nb in notebooks:
     with open(nb) as ff:
+        last_failed = False
+
         print(f"{datetime.now()} Will run {nb}")
         nb_in = nbformat.read(ff, nbformat.NO_CONVERT)
 
         # run notebook
-        ep = ExecutePreprocessor(timeout=600, kernel_name="careamics")
+        ep = ExecutePreprocessor(timeout=600)
         print(f"{datetime.now()} Running {nb}")
-        nb_out = ep.preprocess(nb_in)
+
+        try:
+            nb_out = ep.preprocess(nb_in)
+        except Exception as e:
+            last_failed = True
+            print(f"{datetime.now()} Error running {nb}")
+            print(e)
 
         print(f"{datetime.now()} Done running {nb}")
 
     # save notebook
-    print(f"{datetime.now()} Writing {nb}")
-    with open(nb, "w") as ff:
-        nbformat.write(nb_out, ff)
+    if not last_failed:
+        print(f"{datetime.now()} Writing {nb}")
+        with open(nb, "w") as ff:
+            nbformat.write(nb_out, ff)
 
 print("All notebooks run successfully.")
