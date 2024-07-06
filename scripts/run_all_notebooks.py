@@ -25,7 +25,7 @@ for nb in notebooks:
         nb_in = nbformat.read(ff, nbformat.NO_CONVERT)
 
         # run notebook
-        ep = ExecutePreprocessor(timeout=600)
+        ep = ExecutePreprocessor(timeout=10800) # time-out 3h
         print(f"{datetime.now()} Running {nb}")
 
         try:
