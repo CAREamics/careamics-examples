@@ -14,8 +14,7 @@ for folder in notebook_folders:
 # run each notebook
 last_failed = False
 for nb in notebooks:
-    subprocess.run(
-        ["python", "scripts/run_notebook.py", "-n", str(nb)], capture_output=True
-    )
+    print(f"Running {nb}")
+    subprocess.run(["python", "scripts/run_notebook.py", "-n", str(nb)])
 
 print("All notebooks run successfully.")
