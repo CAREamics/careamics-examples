@@ -36,7 +36,7 @@ with open(nb) as ff:
     print(f"{datetime.now()} Done running {nb}")
 
 # save notebook
-if not last_failed and n_cells == len(nb_out.cells):
+if not last_failed and len(nb_out.cells) > 0:
     # make sure that the notebook has the same number of cells
     # this can avoid overwriting the notebook with an empty one
     print(f"{datetime.now()} Writing {nb}")

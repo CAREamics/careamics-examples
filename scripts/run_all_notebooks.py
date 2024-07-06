@@ -12,7 +12,6 @@ for folder in notebook_folders:
     notebooks.extend(list(Path(folder).rglob("*.ipynb")))
 
 # run each notebook
-last_failed = False
 for nb in notebooks:
     print(f"Running {nb}")
     subprocess.run(["python", "scripts/run_notebook.py", "-n", str(nb)])
