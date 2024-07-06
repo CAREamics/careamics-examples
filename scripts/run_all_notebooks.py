@@ -23,9 +23,10 @@ for nb in notebooks:
 
         print(f"{datetime.now()} Will run {nb}")
         nb_in = nbformat.read(ff, nbformat.NO_CONVERT)
+        n_cells = len(nb_in.cells)
 
         # run notebook
-        ep = ExecutePreprocessor(timeout=10800) # time-out 3h
+        ep = ExecutePreprocessor(timeout=10800)  # time-out 3h
         print(f"{datetime.now()} Running {nb}")
 
         try:
@@ -38,7 +39,9 @@ for nb in notebooks:
         print(f"{datetime.now()} Done running {nb}")
 
     # save notebook
-    if not last_failed:
+    if not last_failed and n_cells == len(nb_out.cells):
+        # make sure that the notebook has the same number of cells
+        # this can avoid overwriting the notebook with an empty one
         print(f"{datetime.now()} Writing {nb}")
         with open(nb, "w") as ff:
             nbformat.write(nb_out, ff)
