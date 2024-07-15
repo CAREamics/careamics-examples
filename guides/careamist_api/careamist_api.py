@@ -19,7 +19,7 @@ config = create_n2v_configuration(
 careamist = CAREamist(config)
 
 # train the model
-train_data = np.random.randint(0, 255, (256, 256))  # (2)!
+train_data = np.random.randint(0, 255, (256, 256)).astype(np.float32)  # (2)!
 careamist.train(train_source=train_data)
 
 # once trained, predict
