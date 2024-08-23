@@ -28,8 +28,8 @@ predction = careamist.predict(source=pred_data)
 
 # export to BMZ format
 careamist.export_to_bmz(
-    path="n2v_model.bmz",
-    name="N2V 2D",
+    path_to_archive="n2v_model.zip",
+    friendly_model_name="N2V 2D",
     input_array=pred_data,
     authors=[{"name": "CAREamics authors"}],
 )

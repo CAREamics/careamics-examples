@@ -32,8 +32,8 @@ export_path = get_careamics_home()
 # %%
 # --8<-- [start:export]
 careamist.export_to_bmz(
-    path=export_path / "my_model.zip",  # (1)!
-    name="CARE_mito",  # (2)!
+    path_to_archive=export_path / "my_model.zip",  # (1)!
+    friendly_model_name="CARE_mito",  # (2)!
     input_array=my_array,  # (3)!
     authors=[
         {
@@ -50,8 +50,8 @@ careamist.export_to_bmz(
 # %%
 # --8<-- [start:optional]
 careamist.export_to_bmz(
-    path=export_path / "my_model.zip",
-    name="CARE_mito",
+    path_to_archive=export_path / "my_model.zip",
+    friendly_model_name="CARE_mito",
     input_array=my_array,
     authors=[
         {

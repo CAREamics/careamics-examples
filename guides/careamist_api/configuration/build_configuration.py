@@ -6,6 +6,7 @@ from careamics import Configuration
 config_as_dict = {
     "experiment_name": "my_experiment",  # (1)!
     "algorithm_config": {  # (2)!
+        "algorithm_type": "fcn",
         "algorithm": "n2v",
         "loss": "n2v",
         "model": {  # (3)!
@@ -28,8 +29,8 @@ config = Configuration(**config_as_dict)  # (5)!
 # --8<-- [start:pydantic]
 from careamics import Configuration
 from careamics.config import (  # (1)!
-    AlgorithmConfig,
     DataConfig,
+    FCNAlgorithmConfig,
     TrainingConfig,
 )
 from careamics.config.architectures import UNetModel
@@ -45,8 +46,9 @@ from careamics.config.transformations import N2VManipulateModel
 
 experiment_name = "Pydantic N2V2 example"
 
-# build AlgorithmConfig
-algorithm_model = AlgorithmConfig(  # (2)!
+# build AlgorithmConfig for the fully convolutional network
+algorithm_model = FCNAlgorithmConfig(  # (2)!
+    algorithm_type="fcn",
     algorithm=SupportedAlgorithm.N2V.value,  # (3)!
     loss=SupportedLoss.N2V.value,
     model=UNetModel(  # (4)!

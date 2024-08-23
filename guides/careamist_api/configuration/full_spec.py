@@ -3,8 +3,8 @@
 # --8<-- [start:specs]
 from careamics import Configuration
 from careamics.config import (
-    AlgorithmConfig,
     DataConfig,
+    FCNAlgorithmConfig,
     TrainingConfig,
 )
 from careamics.config.architectures import UNetModel
@@ -49,7 +49,8 @@ scheduler = LrSchedulerModel(
     name=SupportedScheduler.REDUCE_LR_ON_PLATEAU.value,
 )
 
-algorithm_model = AlgorithmConfig(
+algorithm_model = FCNAlgorithmConfig(
+    algorithm_type="fcn",
     algorithm=SupportedAlgorithm.N2V.value,
     loss=SupportedLoss.N2V.value,
     model=model,

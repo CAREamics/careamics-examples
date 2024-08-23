@@ -71,6 +71,6 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           TITLE: "[test-bot] Guide examples are failing"
         with:
-          filename: .github/TEST_FAIL_TEMPLATE.md
+          filename: .github/workflows/TEST_FAIL_TEMPLATE.md
           update_existing: true
 

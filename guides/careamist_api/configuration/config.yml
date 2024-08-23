@@ -1,6 +1,7 @@
 version: 0.1.0
 experiment_name: N2V 3D
 algorithm_config:
+  algorithm_type: fcn
   algorithm: n2v
   loss: n2v
   model:

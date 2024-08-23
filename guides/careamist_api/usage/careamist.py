@@ -43,8 +43,8 @@ careamist.cfg.data_config.set_means_and_stds([0.0], [1.0])
 import numpy as np
 
 careamist.export_to_bmz(
-    path="model.zip",
-    name="MyExampleModel",
+    path_to_archive="model.zip",
+    friendly_model_name="MyExampleModel",
     input_array=np.random.randint(0, 255, (128, 128)).astype(np.float32),
     authors=[{"name": "CAREamics"}],
 )

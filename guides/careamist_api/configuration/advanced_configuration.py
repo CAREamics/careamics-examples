@@ -14,7 +14,7 @@ data_config = DataConfig(
 
 # %%
 # --8<-- [start:model]
-from careamics.config import AlgorithmConfig, register_model
+from careamics.config import FCNAlgorithmConfig, register_model
 from torch import nn, ones
 
 
@@ -31,11 +31,12 @@ class LinearModel(nn.Module):
         return (input @ self.weight) + self.bias
 
 
-config = AlgorithmConfig(
+config = FCNAlgorithmConfig(
+    algorithm_type="fcn",
     algorithm="custom",  # (2)!
     loss="mse",
     model={
-        "architecture": "Custom",  # (3)!
+        "architecture": "custom",  # (3)!
         "name": "linear_model",  # (4)!
         "in_features": 10,
         "out_features": 5,
