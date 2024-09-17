@@ -6,7 +6,7 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 112
 target-version = "py38"
-select = [
+lint.select = [
     "E",  # style errors
     "W",  # style warnings
     "F",  # flakes
@@ -18,7 +18,7 @@ select = [
     "A001", # flake8-builtins
     "RUF",  # ruff-specific rules
 ]
-ignore = [
+lint.ignore = [
     "D101",
     "D102",
     "D100", # Missing docstring in public module
