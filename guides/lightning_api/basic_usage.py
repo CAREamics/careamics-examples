@@ -25,7 +25,6 @@ val_array = rng.integers(0, 255, (32, 32)).astype(np.float32)
 
 # create lightning module
 model = create_careamics_module(  # (2)!
-    algorithm_type="fcn",
     algorithm="n2v",
     loss="n2v",
     architecture="UNet",

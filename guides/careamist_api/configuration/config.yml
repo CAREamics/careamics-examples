@@ -1,7 +1,6 @@
 version: 0.1.0
 experiment_name: N2V 3D
 algorithm_config:
-  algorithm_type: fcn
   algorithm: n2v
   loss: n2v
   model:
@@ -44,6 +43,12 @@ data_config:
     struct_mask_span: 5
 training_config:
   num_epochs: 20
+  precision: '32'
+  max_steps: -1
+  check_val_every_n_epoch: 1
+  enable_progress_bar: true
+  accumulate_grad_batches: 1
+  gradient_clip_algorithm: norm
   checkpoint_callback:
     monitor: val_loss
     verbose: false

@@ -46,7 +46,7 @@ config = create_n2v_configuration(
     patch_size=[64, 64],
     batch_size=8,
     num_epochs=20,
-    use_augmentations=False,  # (1)!
+    augmentations=[],  # (1)!
 )
 # --8<-- [end:n2v_no_aug]
 # %%
@@ -161,7 +161,7 @@ config = create_n2n_configuration(
     patch_size=[64, 64],
     batch_size=8,
     num_epochs=20,
-    use_augmentations=False,  # (1)!
+    augmentations=[],  # (1)!
 )
 # --8<-- [end:n2n_no_aug]
 
@@ -249,7 +249,7 @@ config = create_care_configuration(
     patch_size=[64, 64],
     batch_size=8,
     num_epochs=20,
-    use_augmentations=False,  # (1)!
+    augmentations=[],  # (1)!
 )
 # --8<-- [end:care_no_aug]
 
