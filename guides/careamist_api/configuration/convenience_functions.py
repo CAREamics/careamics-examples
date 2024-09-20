@@ -75,8 +75,8 @@ config = create_care_configuration(
     num_epochs=20,
     augmentations=[XYFlipModel(flip_y=False)],  # (1)!
 )
-# --8<-- [end:n2v_aug]
-# --8<-- [start:n2v_aug]
+# --8<-- [end:care_aug]
+# --8<-- [start:n2n_aug]
 from careamics.config.transformations import XYFlipModel
 
 config = create_n2n_configuration(
@@ -88,7 +88,7 @@ config = create_n2n_configuration(
     num_epochs=20,
     augmentations=[XYFlipModel(flip_y=False)],  # (1)!
 )
-# --8<-- [end:n2v_aug]
+# --8<-- [end:n2n_aug]
 # %%
 # N2V with WandB
 # --8<-- [start:n2v_wandb]
