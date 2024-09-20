@@ -72,7 +72,7 @@ config = create_n2v_configuration(
     patch_size=[16, 64, 64],
     batch_size=8,
     num_epochs=20,
-    model_kwargs={
+    model_params={
         "depth": 3,  # (1)!
         "num_channels_init": 64,  # (2)!
         # (3)!
@@ -188,7 +188,7 @@ config = create_n2n_configuration(
     patch_size=[16, 64, 64],
     batch_size=8,
     num_epochs=20,
-    model_kwargs={
+    model_params={
         "depth": 3,  # (1)!
         "num_channels_init": 64,  # (2)!
         # (3)!
@@ -276,7 +276,7 @@ config = create_care_configuration(
     patch_size=[16, 64, 64],
     batch_size=8,
     num_epochs=20,
-    model_kwargs={
+    model_params={
         "depth": 3,  # (1)!
         "num_channels_init": 64,  # (2)!
         # (3)!
