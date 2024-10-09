@@ -58,10 +58,6 @@ path_to_model = "model.zip"  # (1)!
 careamist = CAREamist(path_to_model)
 # --8<-- [end:load_model]
 
-# %%
-# --8<-- [start:exp_name]
-careamist = CAREamist(path_to_model, experiment_name="a_new_experiment")
-# --8<-- [end:exp_name]
 
 # %%
 # --8<-- [start:work_dir]
