@@ -12,3 +12,5 @@
 **/data
 .mypy_cache
 .ruff_cache
+*.jpeg
+*.tiff
