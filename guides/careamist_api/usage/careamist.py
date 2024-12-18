@@ -47,6 +47,8 @@ careamist.export_to_bmz(
     friendly_model_name="MyExampleModel",
     input_array=np.random.randint(0, 255, (128, 128)).astype(np.float32),
     authors=[{"name": "CAREamics"}],
+    general_description="This model was trained to denoise 2D images.",
+    data_description="The data was acquired on a confocal microscope [...]",
 )
 
 # %%

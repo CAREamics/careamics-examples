@@ -32,5 +32,7 @@ careamist.export_to_bmz(
     friendly_model_name="N2V 2D",
     input_array=pred_data,
     authors=[{"name": "CAREamics authors"}],
+    general_description="This model was trained to denoise 2D images.",
+    data_description="The data was acquired on a confocal microscope [...]",
 )
 # --8<-- [end:basic_usage]
