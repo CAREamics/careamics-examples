@@ -47,3 +47,21 @@ careamist.export_to_bmz(
     data_description="The data was acquired on a confocal microscope [...]",  # (6)!
 )
 # --8<-- [end:export]
+# %%
+# --8<-- [start:optional]
+careamist.export_to_bmz(
+    path_to_archive=export_path / "my_model.zip",
+    friendly_model_name="CARE_mito",
+    input_array=my_array,
+    authors=[
+        {
+            "name": "Ignatius J. Reilly",
+            "affiliation": "Levy Pants",
+            "email": "ijr@levy.com",
+        },
+        {"name": "Myrna Minkoff", "orcid": "0000-0002-3291-8524"},
+    ],
+    general_description="This model was trained to denoise 2D images of mitochondria.",
+    channel_names=["mito", "nucleus"],  # (1)!
+)
+# --8<-- [end:optional]
