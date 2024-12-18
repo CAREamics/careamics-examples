@@ -62,6 +62,7 @@ careamist.export_to_bmz(
         {"name": "Myrna Minkoff", "orcid": "0000-0002-3291-8524"},
     ],
     general_description="This model was trained to denoise 2D images of mitochondria.",
+    data_description="The data was acquired on a confocal microscope [...]",
     channel_names=["mito", "nucleus"],  # (1)!
 )
 # --8<-- [end:optional]
