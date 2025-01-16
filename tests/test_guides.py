@@ -8,6 +8,16 @@ import pytest
 path_to_guides = Path(__file__).parent.parent / "guides"
 scripts = path_to_guides.rglob("*.py")
 
+# exclude all scripts that end with "errors" to keep a reference of failing examples
+# used in the documentation
+# TODO: is there a better way to show errors to not have to exclude these scripts?
+exclude = ["_errors.py"]
+scripts = [
+    script
+    for script in scripts
+    if not any(pattern in script.name for pattern in exclude)
+]
+
 # create dynamic enum to hold name and path of each script
 # this will allow the name of the script to appear in the pytest summary
 dict_scripts = {}

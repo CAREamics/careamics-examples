@@ -1,13 +1,26 @@
 #!/usr/bin/env python
 # %%
 # --8<-- [start:imports]
+# --8<-- [end:imports]
+# %%
+# Noise2Void with channels
+# --8<-- [start:simple]
 from careamics.config import (
     create_care_configuration,  # CARE
     create_n2n_configuration,  # Noise2Noise
     create_n2v_configuration,  # Noise2Void, N2V2, structN2V
 )
 
-# --8<-- [end:imports]
+config = create_n2v_configuration(
+    experiment_name="n2v_experiment",
+    data_type="array",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=50,
+)
+# --8<-- [end:simple]
+
 
 # %%
 # Noise2Void with channels
@@ -336,3 +349,48 @@ config = create_care_configuration(
     loss="mae",  # (1)!
 )
 # --8<-- [end:care_loss]
+
+
+# %%
+# N2N with dataloader parameters
+# --8<-- [start:n2v_dataloader_kwargs]
+config = create_n2v_configuration(
+    experiment_name="n2v_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    dataloader_params={
+        "num_workers": 4,  # (1)!
+    },
+)
+# --8<-- [end:n2v_dataloader_kwargs]
+# N2N with dataloader parameters
+# --8<-- [start:care_dataloader_kwargs]
+config = create_care_configuration(
+    experiment_name="n2n_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    dataloader_params={
+        "num_workers": 4,  # (1)!
+    },
+)
+# --8<-- [end:care_dataloader_kwargs]
+# N2N with dataloader parameters
+# --8<-- [start:n2n_dataloader_kwargs]
+config = create_n2n_configuration(
+    experiment_name="n2n_3D",
+    data_type="tiff",
+    axes="ZYX",
+    patch_size=[16, 64, 64],
+    batch_size=8,
+    num_epochs=20,
+    dataloader_params={
+        "num_workers": 4,  # (1)!
+    },
+)
+# --8<-- [end:n2n_dataloader_kwargs]
