@@ -359,8 +359,11 @@ config = create_n2v_configuration(
     patch_size=[16, 64, 64],
     batch_size=8,
     num_epochs=20,
-    dataloader_params={
+    train_dataloader_params={
         "num_workers": 4,  # (1)!
+    },
+    val_dataloader_params={
+        "num_workers": 2,  # (2)!
     },
 )
 # --8<-- [end:n2v_dataloader_kwargs]
@@ -373,8 +376,11 @@ config = create_care_configuration(
     patch_size=[16, 64, 64],
     batch_size=8,
     num_epochs=20,
-    dataloader_params={
+    train_dataloader_params={
         "num_workers": 4,  # (1)!
+    },
+    val_dataloader_params={
+        "num_workers": 2,  # (2)!
     },
 )
 # --8<-- [end:care_dataloader_kwargs]
@@ -387,8 +393,11 @@ config = create_n2n_configuration(
     patch_size=[16, 64, 64],
     batch_size=8,
     num_epochs=20,
-    dataloader_params={
+    train_dataloader_params={
         "num_workers": 4,  # (1)!
+    },
+    val_dataloader_params={
+        "num_workers": 2,  # (2)!
     },
 )
 # --8<-- [end:n2n_dataloader_kwargs]
