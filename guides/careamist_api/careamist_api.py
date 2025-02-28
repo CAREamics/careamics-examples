@@ -24,7 +24,7 @@ careamist.train(train_source=train_data)
 
 # once trained, predict
 pred_data = np.random.randint(0, 255, (128, 128)).astype(np.float32)
-predction = careamist.predict(source=pred_data)
+prediction = careamist.predict(source=pred_data)
 # --8<-- [end:quick_start_n2v]
 
 # --8<-- [start:quick_start_care]
@@ -59,7 +59,7 @@ careamist.train(
 
 # once trained, predict
 pred_data = np.random.randint(0, 255, (128, 128)).astype(np.float32)
-predction = careamist.predict(source=pred_data, axes="YX")
+prediction = careamist.predict(source=pred_data, axes="YX")
 # --8<-- [end:quick_start_care]
 
 # --8<-- [start:quick_start_n2n]
@@ -90,5 +90,5 @@ careamist.train(
 
 # once trained, predict
 pred_data = np.random.randint(0, 255, (128, 128)).astype(np.float32)
-predction = careamist.predict(source=pred_data)
+prediction = careamist.predict(source=pred_data)
 # --8<-- [end:quick_start_care]
