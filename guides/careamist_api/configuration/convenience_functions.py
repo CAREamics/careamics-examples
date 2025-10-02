@@ -21,6 +21,47 @@ config = create_n2v_configuration(
 
 
 # %%
+# Noise2Void with steps
+# --8<-- [start:n2v_steps]
+config = create_n2v_configuration(
+    experiment_name="n2v_2D_steps",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    num_steps=50,  # (1)!
+)
+# --8<-- [end:n2v_steps]
+# %%
+# N2N with steps
+# --8<-- [start:n2n_steps]
+config = create_n2n_configuration(
+    experiment_name="n2n_2D_steps",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    num_steps=50,  # (1)!
+)
+# --8<-- [end:n2n_steps]
+# %%
+# CARE with steps
+# --8<-- [start:care_steps]
+config = create_care_configuration(
+    experiment_name="care_2D_steps",
+    data_type="tiff",
+    axes="YX",
+    patch_size=[64, 64],
+    batch_size=8,
+    num_epochs=20,
+    num_steps=50,  # (1)!
+)
+# --8<-- [end:care_steps]
+
+
+# %%
 # Noise2Void with channels
 # --8<-- [start:n2v_channels]
 config = create_n2v_configuration(

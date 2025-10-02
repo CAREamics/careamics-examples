@@ -97,3 +97,16 @@ careamist_supervised.train(
     val_target=val_target_array,
 )
 # --8<-- [end:supervised]
+
+
+# %%
+
+# --8<-- [start:losses]
+loss_dict = careamist.get_losses()
+
+from matplotlib import pyplot as plt
+plt.plot(loss_dict["train_epoch"], loss_dict["train_loss"], loss_dict["val_epoch"], loss_dict["val_loss"])
+plt.legend(["Train loss", "Val loss"])
+plt.title("Losses")
+# --8<-- [end:losses]
+plt.close()
