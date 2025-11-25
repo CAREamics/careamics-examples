@@ -13,10 +13,10 @@ algorithm_config:
     final_activation: None
     n2v2: false
     independent_channels: true
+    use_batch_norm: true
   optimizer:
     name: Adam
-    parameters:
-      lr: 0.0001
+    parameters: {}
   lr_scheduler:
     name: ReduceLROnPlateau
     parameters: {}
@@ -45,15 +45,14 @@ data_config:
     p: 0.5
   train_dataloader_params:
     shuffle: true
-  val_dataloader_params: {}
+    num_workers: 0
+    pin_memory: false
+  val_dataloader_params:
+    pin_memory: false
+    num_workers: 0
 training_config:
-  num_epochs: 20
-  precision: '32'
-  max_steps: -1
-  check_val_every_n_epoch: 1
-  enable_progress_bar: true
-  accumulate_grad_batches: 1
-  gradient_clip_algorithm: norm
+  lightning_trainer_config:
+    max_epochs: 20
   checkpoint_callback:
     monitor: val_loss
     verbose: false

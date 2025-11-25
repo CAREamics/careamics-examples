@@ -8,18 +8,20 @@ from careamics.config import (  # (1)!
     N2VAlgorithm,
     TrainingConfig,
 )
-from careamics.config.architectures import UNetModel
-from careamics.config.callback_model import CheckpointModel, EarlyStoppingModel
+from careamics.config.architectures import UNetConfig
+from careamics.config.lightning.callbacks.callback_config import (
+    CheckpointConfig, EarlyStoppingConfig
+)
 from careamics.config.support import (
     SupportedData,
     SupportedLogger,
 )
-from careamics.config.transformations import XYFlipModel
+from careamics.config.transformations import XYFlipConfig
 
 experiment_name = "N2V_example"
 
 # build the model and algorithm configurations
-model = UNetModel(
+model = UNetConfig(
     architecture="UNet",  # (2)!
     num_channels_init=64,  # (3)!
     depth=3,
@@ -37,7 +39,7 @@ data_model = DataConfig(  # (7)!
     patch_size=(256, 256),
     batch_size=8,
     axes="YX",
-    transforms=[XYFlipModel(flip_y=False)],  # (8)!
+    transforms=[XYFlipConfig(flip_y=False)],  # (8)!
     dataloader_params={  # (9)!
         "num_workers": 4,
         "shuffle": True,
@@ -45,11 +47,11 @@ data_model = DataConfig(  # (7)!
 )
 
 # then the TrainingConfig
-earlystopping = EarlyStoppingModel(
+earlystopping = EarlyStoppingConfig(
     # (10)!
 )
 
-checkpoints = CheckpointModel(every_n_epochs=10)  # (11)!
+checkpoints = CheckpointConfig(every_n_epochs=10)  # (11)!
 
 training_model = TrainingConfig(
     num_epochs=30,

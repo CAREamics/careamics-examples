@@ -1,3 +1,17 @@
+[project]
+name = "careamics-examples"
+version = "0.1.0"
+description = "Example code for CAREamics website."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "careamics[czi,examples]",
+    "pytest"
+]
+
+[tool.uv.sources]
+careamics = { git = "https://github.com/CAREamics/careamics" }
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
