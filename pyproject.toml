@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-careamics = { git = "https://github.com/CAREamics/careamics" }
+careamics = { git = "https://github.com/CAREamics/careamics", branch = "dev/v0.2" }
 
 [tool.pytest.ini_options]
 minversion = "6.0"
